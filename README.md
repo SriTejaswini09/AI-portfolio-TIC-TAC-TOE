@@ -14,9 +14,9 @@ This is a web-based Tic Tac Toe game where you play against a computer opponent 
 
 ---
 
-## 🚀 Demo
+## 🚀 play here
 
-[Live Demo](https://your-hosted-url.com) <!-- Replace with your actual live demo URL -->
+ https://sritejaswini09.github.io/AI-portfolio-TIC-TAC-TOE/
 
 ---
 
