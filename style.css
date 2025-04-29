@@ -1,0 +1,64 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f0f2f5;
+  color: #333;
+}
+
+header {
+  background: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav a {
+  margin: 0 1rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+section {
+  padding: 2rem;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 5px;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.board div {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border: 2px solid #000;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+}
