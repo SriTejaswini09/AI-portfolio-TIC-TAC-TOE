@@ -5,84 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AI Portfolio – Tic Tac Toe</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: linear-gradient(to right, #dbeafe, #f0abfc);
-      color: #222;
-    }
-
-    header {
-      background: #4f46e5;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-
-    nav a {
-      margin: 0 1rem;
-      color: #fbbf24;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    section {
-      padding: 2rem;
-      background: #ffffffbb;
-      margin: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    h1, h2 {
-      color: #1e3a8a;
-    }
-
-    .board {
-      display: grid;
-      grid-template-columns: repeat(3, 100px);
-      gap: 10px;
-      justify-content: center;
-      margin: 1rem auto;
-    }
-
-    .board div {
-      width: 100px;
-      height: 100px;
-      background: #fef9c3;
-      border: 2px solid #000;
-      font-size: 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .board div:hover {
-      background: #fde68a;
-    }
-
-    button {
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      background-color: #4f46e5;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 1rem;
-    }
-
-    footer {
-      background: #1e293b;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -96,7 +18,7 @@
 
   <section id="about">
     <h2>About This Project</h2>
-    <p>Welcome! I'm an SRM student exploring AI. This portfolio showcases a simple Tic Tac Toe game powered by the Minimax algorithm, letting you play against AI!</p>
+    <p>Hello! I'm <strong>Sri Tejaswini</strong>, an SRM student exploring the field of Artificial Intelligence. This portfolio project features a simple yet effective Tic Tac Toe game that allows you to play against a computer using AI logic. The goal of this assignment was to apply AI concepts in a fun and interactive way.</p>
   </section>
 
   <section id="game">
@@ -106,16 +28,23 @@
     <button onclick="startGame()">Restart Game</button>
   </section>
 
+  <section style="padding: 20px; background-color: #f3f4f6; color: #1f2937; border-radius: 10px; margin: 1rem;">
+    <h2>🧠 How the AI Works</h2>
+    <p>The AI in this Tic Tac Toe game uses a simplified version of the Minimax algorithm. It scans the board to determine winning opportunities, blocks the player from winning, and chooses optimal moves based on predefined rules. This introduces basic AI logic used in game strategies.</p>
+    <p>The decision-making is implemented using JavaScript and demonstrates how a machine can play against a human using logical evaluation.</p>
+  </section>
+
   <section id="contact">
     <h2>Contact</h2>
     <p>Email: <a href="mailto:sb3888@srmist.edu.in">sb3888@srmist.edu.in</a></p>
-    <p>GitHub: <a href="https://github.com/yourusername" target="_blank">yourusername</a></p>
+    <p>GitHub: <a href="https://github.com/SriTejaswini09/AI-portfolio-TIC-TAC-TOE" target="_blank">SriTejaswini09</a></p>
   </section>
 
   <footer>
-    <p>&copy; 2025 Your Name | AI Portfolio Project</p>
+    <p>&copy; 2025 Sri Tejaswini | AI Portfolio Project</p>
   </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
+
