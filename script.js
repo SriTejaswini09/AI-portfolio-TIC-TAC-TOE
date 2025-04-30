@@ -24,17 +24,13 @@ function render() {
 
 function makeMove(index) {
   if (board[index] || gameOver) return;
+
   board[index] = currentPlayer;
   render();
 
-  if (checkWinner()) {
-    statusEl.textContent = currentPlayer + " wins!";
-    gameOver = true;
-    return;
-  }
-
-  if (board.every(cell => cell)) {
-    statusEl.textContent = "It's a draw!";
+  let winner = checkWinner();
+  if (winner) {
+    statusEl.textContent = winner === "draw" ? "It's a draw!" : winner + " wins!";
     gameOver = true;
     return;
   }
@@ -63,16 +59,15 @@ function aiMove() {
   board[move] = "O";
   render();
 
-  if (checkWinner()) {
-    statusEl.textContent = "AI (O) wins!";
+  let winner = checkWinner();
+  if (winner) {
+    statusEl.textContent = winner === "draw" ? "It's a draw!" : winner + " wins!";
     gameOver = true;
-  } else if (board.every(cell => cell)) {
-    statusEl.textContent = "It's a draw!";
-    gameOver = true;
-  } else {
-    currentPlayer = "X";
-    statusEl.textContent = "Your turn (X)";
+    return;
   }
+
+  currentPlayer = "X";
+  statusEl.textContent = "Your turn (X)";
 }
 
 function minimax(board, depth, isMaximizing) {
@@ -118,9 +113,10 @@ function checkWinner() {
   for (let combo of winCombos) {
     const [a, b, c] = combo;
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-      return board[a];
+      return board[a]; // Return the winning player
     }
   }
+  if (board.every(cell => cell)) return "draw";
   return null;
 }
 
