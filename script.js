@@ -28,9 +28,9 @@ function makeMove(index) {
   board[index] = currentPlayer;
   render();
 
-  let winner = checkWinner();
-  if (winner) {
-    statusEl.textContent = winner === "draw" ? "It's a draw!" : winner + " wins!";
+  let result = checkGameEnd();
+  if (result) {
+    statusEl.textContent = result === "draw" ? "It's a draw!" : result + " wins!";
     gameOver = true;
     return;
   }
@@ -59,9 +59,9 @@ function aiMove() {
   board[move] = "O";
   render();
 
-  let winner = checkWinner();
-  if (winner) {
-    statusEl.textContent = winner === "draw" ? "It's a draw!" : winner + " wins!";
+  let result = checkGameEnd();
+  if (result) {
+    statusEl.textContent = result === "draw" ? "It's a draw!" : result + " wins!";
     gameOver = true;
     return;
   }
@@ -70,36 +70,7 @@ function aiMove() {
   statusEl.textContent = "Your turn (X)";
 }
 
-function minimax(board, depth, isMaximizing) {
-  let result = checkWinner();
-  if (result) return result === "O" ? 1 : result === "X" ? -1 : 0;
-
-  if (isMaximizing) {
-    let best = -Infinity;
-    for (let i = 0; i < board.length; i++) {
-      if (board[i] === "") {
-        board[i] = "O";
-        let score = minimax(board, depth + 1, false);
-        board[i] = "";
-        best = Math.max(score, best);
-      }
-    }
-    return best;
-  } else {
-    let best = Infinity;
-    for (let i = 0; i < board.length; i++) {
-      if (board[i] === "") {
-        board[i] = "X";
-        let score = minimax(board, depth + 1, true);
-        board[i] = "";
-        best = Math.min(score, best);
-      }
-    }
-    return best;
-  }
-}
-
-function checkWinner() {
+function checkGameEnd() {
   const winCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -113,11 +84,46 @@ function checkWinner() {
   for (let combo of winCombos) {
     const [a, b, c] = combo;
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-      return board[a]; // Return the winning player
+      return board[a]; // return "X" or "O"
     }
   }
-  if (board.every(cell => cell)) return "draw";
+  if (board.every(cell => cell !== "")) {
+    return "draw";
+  }
   return null;
+}
+
+function minimax(boardState, depth, isMaximizing) {
+  let result = checkGameEnd();
+  if (result !== null) {
+    if (result === "O") return 1;
+    else if (result === "X") return -1;
+    else return 0; // draw
+  }
+
+  if (isMaximizing) {
+    let best = -Infinity;
+    for (let i = 0; i < boardState.length; i++) {
+      if (boardState[i] === "") {
+        boardState[i] = "O";
+        let score = minimax(boardState, depth + 1, false);
+        boardState[i] = "";
+        best = Math.max(score, best);
+      }
+    }
+    return best;
+  } else {
+    let best = Infinity;
+    for (let i = 0; i < boardState.length; i++) {
+      if (boardState[i] === "") {
+        boardState[i] = "X";
+        let score = minimax(boardState, depth + 1, true);
+        boardState[i] = "";
+        best = Math.min(score, best);
+      }
+    }
+    return best;
+  }
 }
 
 startGame();
