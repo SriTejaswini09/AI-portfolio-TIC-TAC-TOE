@@ -2,10 +2,12 @@ const boardEl = document.getElementById("board");
 const statusEl = document.getElementById("status");
 let board = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "X";
+let gameOver = false;
 
 function startGame() {
   board = ["", "", "", "", "", "", "", "", ""];
   currentPlayer = "X";
+  gameOver = false;
   statusEl.textContent = "Your turn (X)";
   render();
 }
@@ -21,25 +23,29 @@ function render() {
 }
 
 function makeMove(index) {
-  if (board[index] || checkWinner()) return;
+  if (board[index] || gameOver) return;
   board[index] = currentPlayer;
+  render();
+
   if (checkWinner()) {
     statusEl.textContent = currentPlayer + " wins!";
+    gameOver = true;
     return;
   }
+
   if (board.every(cell => cell)) {
     statusEl.textContent = "It's a draw!";
+    gameOver = true;
     return;
   }
-  currentPlayer = currentPlayer === "X" ? "O" : "X";
-  if (currentPlayer === "O") {
-    aiMove();
-  } else {
-    statusEl.textContent = "Your turn (X)";
-  }
+
+  currentPlayer = "O";
+  aiMove();
 }
 
 function aiMove() {
+  if (gameOver) return;
+
   let bestScore = -Infinity;
   let move;
   for (let i = 0; i < board.length; i++) {
@@ -53,16 +59,20 @@ function aiMove() {
       }
     }
   }
+
   board[move] = "O";
+  render();
+
   if (checkWinner()) {
     statusEl.textContent = "AI (O) wins!";
+    gameOver = true;
   } else if (board.every(cell => cell)) {
     statusEl.textContent = "It's a draw!";
+    gameOver = true;
   } else {
     currentPlayer = "X";
     statusEl.textContent = "Your turn (X)";
   }
-  render();
 }
 
 function minimax(board, depth, isMaximizing) {
@@ -111,7 +121,6 @@ function checkWinner() {
       return board[a];
     }
   }
-  if (board.every(cell => cell)) return "draw";
   return null;
 }
 
